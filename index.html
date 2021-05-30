@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS DZ_20</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<header>
+    <h1>Домашняя работа №20</h1>
+</header>
+
+<div class="content">
+    <script src="JS/DZ20.js"></script>
+
+    <div id="taskList">
+        <input type="button" value="1. Сравнение чисел" onclick=setParameters(1) name="btn1">
+        <input type="button" value="2. Факториал заданного числа" onclick=setParameters(2) name="btn2">
+        <input type="button" value="3. Объединение цифр в число" onclick=setParameters(3) name="btn3">
+        <input type="button" value="4. Площадь прямоугольника" onclick=setParameters(4) name="btn4">
+        <input type="button" value='5. Проверка числа на "совершенство"' onclick=setParameters(5) name="btn5">
+        <input type="button" value="6. Совершенные числа из диапазона" onclick=setParameters(6) name="btn6">
+        <input type="button" value='7. Время в формате "чч:мм:сс"' onclick=setParameters(7) name="btn7">
+        <input type="button" value="8. Время в секундах" onclick=setParameters(8) name="btn8">
+        <input type="button" value='9. Секунды в формате "чч:мм:сс"' onclick=setParameters(9) name="btn9">
+        <input type="button" value="10. Разница во времени" onclick=setParameters(10) name="btn10">
+    </div>
+
+    <div id="task">
+        <h2 id="condition">Задача</h2>
+        <h3>Запрос 1</h3>
+        <input type="text">
+        <h3>Запрос 2</h3>
+        <input type="text">
+        <h3>Запрос 3</h3>
+        <input type="text">
+        <h3>Запрос 4</h3>
+        <input type="text">
+        <h3>Запрос 5</h3>
+        <input type="text">
+        <h3>Запрос 6</h3>
+        <input type="text">
+
+        <input type="button" value="Выполнить" onclick=doChosen() name="btn11">
+        <input type="button" value="Назад" onclick=showTaskList() name="btn12">
+    </div>
+    <div class="result">
+        <h2 id="result"></h2>
+    </div>
+</div>
+
+</body>
+</html>
