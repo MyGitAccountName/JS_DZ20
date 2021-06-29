@@ -103,8 +103,7 @@ function isAllEmpty(paramsNumber) {
     let j = 0;
     for (i = 1; i <= paramsNumber; i++)
         if (getParameter(i) === '') j++;
-    if (j === paramsNumber) return true;
-    else return false;
+    return (j === paramsNumber);
 }
 
 // Проверка на тип данных для нескольких параметров
@@ -117,6 +116,20 @@ function isSomeNaN(...P) {
     return false;
 }
 
+// Проверка на вхождение в диапазон
+function inArea(name, beginArea, endArea) {
+    return (name >= beginArea) && (name <= endArea);
+}
+
+// Проверка целых чисел
+function isSomeFractional(...P) {
+    for (i = 0; i < P.length; i++) {
+        if (P[i] % 1 !== 0) {
+            return true;
+        }
+    }
+    return false;
+}
 
 // Сравнение чисел
 function compareNumbers(num1, num2) {
@@ -136,10 +149,7 @@ function makeTask1(p1, p2) {
 
 // Факториал заданного числа
 function getFactorial(num) {
-    if (num === 1) return 1;
-    else {
-        return num * getFactorial(num - 1);
-    }
+    return num === 1 ? 1 : num * getFactorial(--num);
 }
 
 function makeTask2(p1) {
@@ -159,9 +169,7 @@ function mergeDigits(d1, d2, d3) {
 }
 
 function makeTask3(p1, p2, p3) {
-    a = +p1;
-    b = +p2;
-    c = +p3;
+    [a, b, c] = [+p1, +p2, +p3];
     if (isSomeEmpty(3) || isSomeNaN(a, b, c) || (p1.length !== 1) || (p2.length !== 1) || (p3.length !== 1)) {
         alert("Ошибка в исходных данных!");
         return '';
@@ -192,8 +200,7 @@ function isPerfectNumber(num) {
         for (i = 2; i < num; i++) {
             if (num % i === 0) sum += i;
         }
-        if (num === sum) return true;
-        else return false;
+        return (num === sum);
     }
 }
 
@@ -241,11 +248,11 @@ function showTime(hours, minutes, seconds) {
 }
 
 function makeTask7(p1, p2, p3) {
-    a = +p1;
-    b = +p2;
-    c = +p3;
-    if (isSomeNaN(a, b, c) || a < 0 || b < 0 || i < 0 || a > 23 || b > 59 || c > 59
-        || a % 1 !== 0 || b % 1 !== 0 || i % 1 !== 0) {
+    [a, b, c] = [+p1, +p2, +p3];
+    /*    if (isSomeNaN(a, b, c) || a < 0 || b < 0 || c < 0 || a > 23 || b > 59 || c > 59
+            || a % 1 !== 0 || b % 1 !== 0 || c % 1 !== 0) {*/
+
+    if (isSomeNaN(a, b, c) || isSomeFractional(a, b, c) || !inArea(a, 0, 23) || !inArea(b, 0, 59) || !inArea(c, 0, 59)) {
         alert("Ошибка в исходных данных!");
         return '';
     } else return showTime(a, b, c);
@@ -257,11 +264,11 @@ function getTimeInSeconds(hours, minutes, seconds) {
 }
 
 function makeTask8(p1, p2, p3) {
-    a = +p1;
-    b = +p2;
-    c = +p3;
-    if (isSomeNaN(a, b, c) || a < 0 || b < 0 || c < 0 || a > 23 || b > 59 || c > 59
-        || a % 1 !== 0 || b % 1 !== 0 || c % 1 !== 0) {
+    [a, b, c] = [+p1, +p2, +p3];
+    /*    if (isSomeNaN(a, b, c) || a < 0 || b < 0 || c < 0 || a > 23 || b > 59 || c > 59
+            || a % 1 !== 0 || b % 1 !== 0 || c % 1 !== 0) */
+
+    if (isSomeNaN(a, b, c) || isSomeFractional(a, b, c) || !inArea(a, 0, 23) || !inArea(b, 0, 59) || !inArea(c, 0, 59)) {
         alert("Ошибка в исходных данных!");
         return '';
     } else return getTimeInSeconds(a, b, c);
@@ -299,15 +306,23 @@ function getTimeDifference(h1, m1, s1, h2, m2, s2) {
 }
 
 function makeTask10(p1, p2, p3, p4, p5, p6) {
-    a = +p1;
-    b = +p2;
-    c = +p3;
+    [a, b, c] = [+p1, +p2, +p3];
     let a2 = +p4;
     let b2 = +p5;
     let c2 = +p6;
-    if (isSomeNaN(a, b, c, a2, b2, c2) || a < 0 || b < 0 || c < 0 || a2 < 0 || b2 < 0 || c2 < 0
-        || a > 23 || b > 59 || c > 59 || a2 > 23 || b2 > 59 || c2 > 59
-        || a % 1 !== 0 || b % 1 !== 0 || c % 1 !== 0 || a2 % 1 !== 0 || b2 % 1 !== 0 || c2 % 1 !== 0) {
+    /*    if (isSomeNaN(a, b, c, a2, b2, c2) || a < 0 || b < 0 || c < 0 || a2 < 0 || b2 < 0 || c2 < 0
+            || a > 23 || b > 59 || c > 59 || a2 > 23 || b2 > 59 || c2 > 59
+            || a % 1 !== 0 || b % 1 !== 0 || c % 1 !== 0 || a2 % 1 !== 0 || b2 % 1 !== 0 || c2 % 1 !== 0) {*/
+
+    /*if (isSomeNaN(a, b, c, a2, b2, c2) || isSomeFractional(a, b, c, a2, b2, c2) || !inArea(a, 0, 23) ||
+        !inArea(b, 0, 59) || !inArea(c, 0, 59) || !inArea(a2, 0, 23) || !inArea(b2, 0, 59) || !inArea(c2, 0, 59)) {*/
+
+    let errors = [isSomeNaN(a, b, c, a2, b2, c2),
+        isSomeFractional(a, b, c, a2, b2, c2),
+        !inArea(a, 0, 23) || !inArea(b, 0, 59) || !inArea(c, 0, 59),
+        !inArea(a2, 0, 23) || !inArea(b2, 0, 59) || !inArea(c2, 0, 59)];
+
+    if (errors[0] + errors[1] + errors[2] + errors[3]) {
         alert("Ошибка в исходных данных!");
         return '';
     } else return (`Разница: ${getTimeDifference(a, b, c, a2, b2, c2)}`);
